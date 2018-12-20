@@ -19,7 +19,7 @@
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<h3>
-				学生列表
+				学生订单
 			</h3>
 				</div>
 			</div>
@@ -74,31 +74,16 @@
 										状态
 									</th>
 									<th>
-										学号
+										订单号
 									</th>
 									<th>
 										学生
 									</th>
 									<th>
-										性别
+										时间
 									</th>
 									<th>
-										电话
-									</th>
-									<th>
-										qq
-									</th>
-									<th>
-										申领权限
-									</th>
-									<th>
-										荣耀值
-									</th>
-									<th>
-										是否在校
-									</th>
-									<th>
-										班级
+										备注
 									</th>
 									<th>
 										操作
@@ -123,23 +108,8 @@
 										15056099931
 									</td>
 									<td>
-										408391897
-									</td>
-									<td>
-										100
-									</td>
-									<td>
-										100
-									</td>
-									<td>
-										是
-									</td>
-									<td>
-										计算机与信息工程学院软件工程1班
-									</td>
-									<td>
 										<a href="javascript:void(-1);" class="xq-btn" data-toggle="modal" data-target="#myModal">详情</a>
-										<a href="#" data-toggle="modal" data-target="#myModal" class="xg-btn">修改</a>
+										<a href="#" data-toggle="modal" data-target="#myModal" class="xg-btn">审核</a>
 									</td>
 								</tr>
 

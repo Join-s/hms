@@ -62,5 +62,9 @@ public class OrdersServiceImpl  implements OrdersService{
 		}
 		return 1;
     }
+    
+	public List<TOrders> selectVoByUid( ) {
+		return tOrdersMapper.selectVoByUid();
+	}
 }	
 	

@@ -17,8 +17,19 @@ public class TOrders {
     private String remark;//备注
     //订单详情，一对多
     private List<TOrderdetails> tOrderdetails;
+    //一对一
+    private TUser tUser;
     
-    public List<TOrderdetails> gettOrderdetails() {
+
+	public TUser gettUser() {
+		return tUser;
+	}
+
+	public void settUser(TUser tUser) {
+		this.tUser = tUser;
+	}
+
+	public List<TOrderdetails> gettOrderdetails() {
 		return tOrderdetails;
 	}
 

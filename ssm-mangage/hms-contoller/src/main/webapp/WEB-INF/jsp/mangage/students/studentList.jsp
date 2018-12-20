@@ -186,10 +186,9 @@
 							<!--修改显示公告信息表单-->
 
 							<form action="#" method="post" id="xq-form"
-								onsubmit="return checkinfo()">
+								onsubmit="return checkinfo()"  >
 								<table class="table table-condensed">
 
-									学号，姓名，性别，电话，qq，荣耀值，学院专业班级，申领权限，是否毕业，辅导员，辅导员电话
 								</table>
 							</form>
 							<!-- /修改显示公告信息表单-->

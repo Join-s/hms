@@ -6,25 +6,30 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 public interface TOrdersMapper {
-    int countByExample(TOrdersExample example);
+	int countByExample(TOrdersExample example);
 
-    int deleteByExample(TOrdersExample example); 
-    int deleteByPrimaryKey(Integer id);
+	List<TOrders> selectVoByUid();
 
-    int insert(TOrders record);
+	int deleteByExample(TOrdersExample example);
 
-    int insertSelective(TOrders record);
-    //根据订单id查询
-    TOrders selectVoByOid(Integer oid);
-    List<TOrders> selectByExample(TOrdersExample example);
+	int deleteByPrimaryKey(Integer id);
 
-    TOrders selectByPrimaryKey(Integer id);
+	int insert(TOrders record);
 
-    int updateByExampleSelective(@Param("record") TOrders record, @Param("example") TOrdersExample example);
+	int insertSelective(TOrders record);
 
-    int updateByExample(@Param("record") TOrders record, @Param("example") TOrdersExample example);
+	// 根据订单id查询
+	TOrders selectVoByOid(Integer oid);
 
-    int updateByPrimaryKeySelective(TOrders record);
+	List<TOrders> selectByExample(TOrdersExample example);
 
-    int updateByPrimaryKey(TOrders record);
+	TOrders selectByPrimaryKey(Integer id);
+
+	int updateByExampleSelective(@Param("record") TOrders record, @Param("example") TOrdersExample example);
+
+	int updateByExample(@Param("record") TOrders record, @Param("example") TOrdersExample example);
+
+	int updateByPrimaryKeySelective(TOrders record);
+
+	int updateByPrimaryKey(TOrders record);
 }

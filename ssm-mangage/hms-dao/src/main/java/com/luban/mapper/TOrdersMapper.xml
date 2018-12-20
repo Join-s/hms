@@ -1,313 +1,379 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.luban.mapper.TOrdersMapper" >
-  <resultMap id="BaseResultMap" type="com.luban.po.TOrders" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="uid" property="uid" jdbcType="INTEGER" />
-    <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="updatetime" property="updatetime" jdbcType="TIMESTAMP" />
-    <result column="status" property="status" jdbcType="VARCHAR" />
-    <result column="remark" property="remark" jdbcType="VARCHAR" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    id, uid, createtime, updatetime, status, remark
-  </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.luban.po.TOrdersExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from t_orders
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_orders
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_orders
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.luban.po.TOrdersExample" >
-    delete from t_orders
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.luban.po.TOrders" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
-  
-  
-  
-  
-    insert into t_orders (id, uid, createtime, 
-      updatetime, status, remark
-      )
-    values (default, #{uid,jdbcType=INTEGER}, now(), 
-      now(), 0, #{remark,jdbcType=VARCHAR}
-      )
-      
-     <selectKey resultType="int" keyProperty="id" order="AFTER">
-        SELECT LAST_INSERT_ID()
-    </selectKey>
-  </insert>
-  <insert id="insertSelective" parameterType="com.luban.po.TOrders" >
-    insert into t_orders
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="uid != null" >
-        uid,
-      </if>
-      <if test="createtime != null" >
-        createtime,
-      </if>
-      <if test="updatetime != null" >
-        updatetime,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-      <if test="remark != null" >
-        remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id},
-      </if>
-      <if test="uid != null" >
-        #{uid,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        now(),
-      </if>
-      <if test="updatetime != null" >
-       now(),
-      </if>
-      <if test="status != null" >
-        0,
-      </if>
-      <if test="remark != null" >
-        #{remark,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.luban.po.TOrdersExample" resultType="java.lang.Integer" >
-    select count(*) from t_orders
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update t_orders
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.uid != null" >
-        uid = #{record.uid,jdbcType=INTEGER},
-      </if>
-      <if test="record.createtime != null" >
-        createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updatetime != null" >
-        updatetime = now(),
-      </if>
-      <if test="record.status != null" >
-        status = #{record.status,jdbcType=VARCHAR},
-      </if>
-      <if test="record.remark != null" >
-        remark = #{record.remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update t_orders
-    set id = #{record.id,jdbcType=INTEGER},
-      uid = #{record.uid,jdbcType=INTEGER},
-      createtime = #{record.createtime,jdbcType=TIMESTAMP},
-      updatetime = now(),
-      status = #{record.status,jdbcType=VARCHAR},
-      remark = #{record.remark,jdbcType=VARCHAR}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.luban.po.TOrders" >
-    update t_orders
-    <set >
-      <if test="uid != null" >
-        uid = #{uid,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        createtime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatetime != null" >
-        updatetime = now(),
-      </if>
-      <if test="status != null" >
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="remark != null" >
-        remark = #{remark,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.luban.po.TOrders" >
-    update t_orders
-    set uid = #{uid,jdbcType=INTEGER},
-      createtime = #{createtime,jdbcType=TIMESTAMP},
-      updatetime = now(),
-      status = #{status,jdbcType=VARCHAR},
-      remark = #{remark,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap type="com.luban.po.TOrders" id="OrdersVoMap">
-			<id column="o_id" property="id" jdbcType="INTEGER" />
-			<result column="o_uid" property="uid" jdbcType="INTEGER" />
-			<result column="o_createtime" property="createtime"
-				jdbcType="TIMESTAMP" />
-			<result column="o_updatetime" property="updatetime"
-				jdbcType="TIMESTAMP" />
-			<result column="status" property="status" jdbcType="VARCHAR" />
-			<result column="remark" property="remark" jdbcType="VARCHAR" />
-			
-			<collection property="tOrderdetails"
-				ofType="com.luban.po.TOrderdetails">
-				<id column="od_id" property="id" jdbcType="INTEGER" />
-				<result column="cid" property="cid" jdbcType="INTEGER" />
-				<result column="oid" property="oid" jdbcType="INTEGER" />
-				<result column="number" property="number" jdbcType="INTEGER" />
-				<association property="tComponent"
-					javaType="com.luban.po.TComponent">
-					<id column="c_id" property="id" jdbcType="INTEGER" />
-					<result column="sid" property="sid" jdbcType="INTEGER" />
-					<result column="c_name" property="name" jdbcType="VARCHAR" />
-					<result column="c_createtime" property="createtime"
-						jdbcType="TIMESTAMP" />
-					<result column="c_updatetime" property="updatetime"
-						jdbcType="TIMESTAMP" />
-					<result column="specification" property="specification"
-						jdbcType="VARCHAR" />
-					<result column="val" property="val" jdbcType="VARCHAR" />
-					<result column="img" property="img" jdbcType="VARCHAR" />
-					<result column="c_introduce" property="introduce"
-						jdbcType="VARCHAR" />
-					<result column="price" property="price" jdbcType="REAL" />
-					<result column="malllink" property="malllink"
-						jdbcType="VARCHAR" />
-					<result column="store" property="store" jdbcType="INTEGER" />
-					<result column="isstore" property="isstore"
-						jdbcType="VARCHAR" />
-					<result column="place" property="place" jdbcType="VARCHAR" />
-					<result column="c_level" property="level" jdbcType="INTEGER" />
-					<result column="sealing" property="sealing"
-						jdbcType="VARCHAR" />
-					<result column="updownlink" property="updownlink"
-						jdbcType="VARCHAR" />
-					<result column="brand" property="brand" jdbcType="VARCHAR" />
-					<result column="Version" property="version"
-						jdbcType="VARCHAR" />
-					<result column="c_remark1" property="remark1"
-						jdbcType="VARCHAR" />
-					<result column="c_remark2" property="remark2"
-						jdbcType="VARCHAR" />
-					<result column="c_remark3" property="remark3"
-						jdbcType="VARCHAR" />
-				</association>
-			</collection>
+<mapper namespace="com.luban.mapper.TOrdersMapper">
+	<resultMap id="BaseResultMap" type="com.luban.po.TOrders">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
 	</resultMap>
-  
-  
-  <select id="selectVoByOid" parameterType="int" resultMap="OrdersVoMap">
-  SELECT
-		o.id o_id, o.uid o_uid, o.createtime o_createtime, o.updatetime o_updatetime, STATUS, remark,
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, uid, createtime, updatetime, status, remark
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.luban.po.TOrdersExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_orders
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_orders
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from t_orders
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.luban.po.TOrdersExample">
+		delete from t_orders
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.luban.po.TOrders"
+		useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+
+
+
+
+		insert into t_orders (id, uid, createtime,
+		updatetime, status, remark
+		)
+		values (default, #{uid,jdbcType=INTEGER}, now(),
+		now(), 0, #{remark,jdbcType=VARCHAR}
+		)
+
+		<selectKey resultType="int" keyProperty="id" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.luban.po.TOrders">
+		insert into t_orders
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="updatetime != null">
+				updatetime,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="remark != null">
+				remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				now(),
+			</if>
+			<if test="updatetime != null">
+				now(),
+			</if>
+			<if test="status != null">
+				0,
+			</if>
+			<if test="remark != null">
+				#{remark,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.luban.po.TOrdersExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_orders
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_orders
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.uid != null">
+				uid = #{record.uid,jdbcType=INTEGER},
+			</if>
+			<if test="record.createtime != null">
+				createtime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.updatetime != null">
+				updatetime = now(),
+			</if>
+			<if test="record.status != null">
+				status = #{record.status,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark != null">
+				remark = #{record.remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_orders
+		set id = #{record.id,jdbcType=INTEGER},
+		uid = #{record.uid,jdbcType=INTEGER},
+		createtime = #{record.createtime,jdbcType=TIMESTAMP},
+		updatetime = now(),
+		status = #{record.status,jdbcType=VARCHAR},
+		remark = #{record.remark,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.luban.po.TOrders">
+		update t_orders
+		<set>
+			<if test="uid != null">
+				uid = #{uid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				updatetime = now(),
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.luban.po.TOrders">
+		update t_orders
+		set uid = #{uid,jdbcType=INTEGER},
+		createtime = #{createtime,jdbcType=TIMESTAMP},
+		updatetime = now(),
+		status = #{status,jdbcType=VARCHAR},
+		remark = #{remark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<resultMap type="com.luban.po.TOrders" id="OrdersVoMap">
+		<id column="o_id" property="id" jdbcType="INTEGER" />
+		<result column="o_uid" property="uid" jdbcType="INTEGER" />
+		<result column="o_createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="o_updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+
+		<collection property="tOrderdetails"
+			ofType="com.luban.po.TOrderdetails">
+			<id column="od_id" property="id" jdbcType="INTEGER" />
+			<result column="cid" property="cid" jdbcType="INTEGER" />
+			<result column="oid" property="oid" jdbcType="INTEGER" />
+			<result column="number" property="number" jdbcType="INTEGER" />
+			<association property="tComponent"
+				javaType="com.luban.po.TComponent">
+				<id column="c_id" property="id" jdbcType="INTEGER" />
+				<result column="sid" property="sid" jdbcType="INTEGER" />
+				<result column="c_name" property="name" jdbcType="VARCHAR" />
+				<result column="c_createtime" property="createtime"
+					jdbcType="TIMESTAMP" />
+				<result column="c_updatetime" property="updatetime"
+					jdbcType="TIMESTAMP" />
+				<result column="specification" property="specification"
+					jdbcType="VARCHAR" />
+				<result column="val" property="val" jdbcType="VARCHAR" />
+				<result column="img" property="img" jdbcType="VARCHAR" />
+				<result column="c_introduce" property="introduce"
+					jdbcType="VARCHAR" />
+				<result column="price" property="price" jdbcType="REAL" />
+				<result column="malllink" property="malllink"
+					jdbcType="VARCHAR" />
+				<result column="store" property="store" jdbcType="INTEGER" />
+				<result column="isstore" property="isstore"
+					jdbcType="VARCHAR" />
+				<result column="place" property="place" jdbcType="VARCHAR" />
+				<result column="c_level" property="level" jdbcType="INTEGER" />
+				<result column="sealing" property="sealing"
+					jdbcType="VARCHAR" />
+				<result column="updownlink" property="updownlink"
+					jdbcType="VARCHAR" />
+				<result column="brand" property="brand" jdbcType="VARCHAR" />
+				<result column="Version" property="version"
+					jdbcType="VARCHAR" />
+				<result column="c_remark1" property="remark1"
+					jdbcType="VARCHAR" />
+				<result column="c_remark2" property="remark2"
+					jdbcType="VARCHAR" />
+				<result column="c_remark3" property="remark3"
+					jdbcType="VARCHAR" />
+			</association>
+		</collection>
+	</resultMap>
+
+
+	<select id="selectVoByOid" parameterType="int"
+		resultMap="OrdersVoMap">
+		SELECT
+		o.id o_id, o.uid o_uid, o.createtime o_createtime, o.updatetime
+		o_updatetime, STATUS, remark,
 
 		od.id od_id, cid, oid, number,
 
-		c.id c_id, sid, c.name c_name, c.createtime c_createtime, c.updatetime c_updatetime, specification, val,
+		c.id c_id,
+		sid, c.name c_name, c.createtime c_createtime, c.updatetime
+		c_updatetime, specification, val,
 		img,c.introduce c_introduce, price,
 		malllink, store, isstore, place, c.level c_level, sealing,
-		updownlink, brand, VERSION,
+		updownlink,
+		brand, VERSION,
 		c.remark1 c_remark1,
-		c.remark2 c_remark2, c.remark3 c_remark3
+		c.remark2 c_remark2, c.remark3
+		c_remark3
 
 		FROM t_orders o,t_orderdetails od,t_component c
-		where  o.id=od.oid AND od.`cid`=c.`id` 
-  			AND od.`oid`=#{value}
-  </select>
-  
+		where
+		o.id=od.oid AND od.`cid`=c.`id`
+		AND od.`oid`=#{value}
+	</select>
+	<resultMap id="ByUidVoMap" type="com.luban.po.TOrders">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<association property="tUser"
+			javaType="com.luban.po.TUser">
+			<result column="uname" property="name" jdbcType="VARCHAR" />
+		</association>
+		<collection property="tOrderdetails"
+			ofType="com.luban.po.TOrderdetails">
+			<result column="number" property="number" jdbcType="INTEGER" />
+			<association property="tComponent"
+				javaType="com.luban.po.TComponent">
+				<result column="tname" property="name" jdbcType="VARCHAR" />
+				<result column="specification" property="specification"
+					jdbcType="VARCHAR" />
+				<result column="val" property="val" jdbcType="VARCHAR" />
+				<result column="store" property="store" jdbcType="INTEGER" />
+				<result column="place" property="place" jdbcType="VARCHAR" />
+				<result column="brand" property="brand" jdbcType="VARCHAR" />
+				<association property="tSubclass"
+					javaType="com.luban.po.TSubclass">
+					<result column="sname" property="name" jdbcType="VARCHAR" />
+				</association>
+			</association>
+		</collection>
 
-  
+
+	</resultMap>
+	<select id="selectVoByUid" resultMap="ByUidVoMap">
+		select t_orders.`id`,t_orders.`createtime`,
+		t_orders.`remark`,t_orders.`status`,t_user.`name`
+		uname,t_orderdetails.`number`,t_component.`name`
+		tname,t_component.`specification`,t_component.`val`,t_component.`store`,t_component.`place`,t_component.`brand`,t_subclass.`name`
+		sname
+		from t_orders,t_orderdetails,t_component ,t_user,t_subclass
+		where t_orders.`id`=t_orderdetails.`oid`
+		and t_orderdetails.`cid`=t_component.`id`
+		and t_orders.`uid`=t_user.`id`
+		and t_component.`sid`=t_subclass.`id`  ORDER BY t_orders.`createtime` DESC
+	</select>
+
 </mapper>

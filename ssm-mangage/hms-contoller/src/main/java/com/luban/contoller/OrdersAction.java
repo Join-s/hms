@@ -174,4 +174,19 @@ public class OrdersAction {
 		
 		return "mangage/orders/ordersHouse";
 	}
+	/**
+	 * 
+	* @Description 方法描述: 根据用户id查询
+	* @param 参数:@param uid
+	* @param 参数:@return    
+	* @return 返回类型:List<TOrders>    
+	* @throws 异常:
+	 */
+	@RequestMapping("findUserOrders")
+	@ResponseBody
+	public  List<TOrders> selectVoByUid() {
+		List<TOrders> u=ordersService.selectVoByUid();
+		return u;
+	}
+	
 }

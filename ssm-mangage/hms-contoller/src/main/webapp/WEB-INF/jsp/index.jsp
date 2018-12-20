@@ -74,7 +74,9 @@
 						<c:if test="${flag }">
 							<li>
 							<a href="${pageContext.request.contextPath }/rest/goOut" onclick="return confirm('确定退出？')">
-								<img class="img-circle" src="${pageContext.request.contextPath }/resource/img/bg.jpg" height="20px" width="20px" /> <span>${user.name} </span>
+								<img class="img-circle" src="${pageContext.request.contextPath }/resource/img/${user.img==null?'bg.jpg':user.img }" height="20px" width="20px" /> 
+								
+								<span>${user.name} </span>
 							</a>
 						</li>
 						</c:if>
