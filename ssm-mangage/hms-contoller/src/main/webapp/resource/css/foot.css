@@ -1,0 +1,16 @@
+
+    	#foot	ul{
+    			list-style: none;
+    		}
+    	#foot	ul li{
+    			float: left;
+    			width: 120px;
+    		}
+    	#foot	ul li a{
+    			color: #000000;
+    		}
+    		
+    	#foot	.clear{
+    			clear: both;
+    			
+    		}

@@ -1,0 +1,19 @@
+.badge{
+	background-color: red;
+}
+.showpersonalinfo  {
+	display: none;
+	
+}
+
+.list-group-item a{
+	color: black;
+}
+.showorders_li a{
+	font-size:25px;
+}
+
+.ordetails div{
+	padding: 2px 0px 0px;
+	margin:2px 0px 0px;
+}

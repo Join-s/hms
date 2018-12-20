@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.luban.mapper.TComponentMapper">
+	<resultMap id="BaseResultMap" type="com.luban.po.TComponent">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="sid" property="sid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="specification" property="specification"
+			jdbcType="VARCHAR" />
+		<result column="val" property="val" jdbcType="VARCHAR" />
+		<result column="img" property="img" jdbcType="VARCHAR" />
+		<result column="introduce" property="introduce"
+			jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="REAL" />
+		<result column="malllink" property="malllink"
+			jdbcType="VARCHAR" />
+		<result column="store" property="store" jdbcType="INTEGER" />
+		<result column="isstore" property="isstore" jdbcType="VARCHAR" />
+		<result column="place" property="place" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="sealing" property="sealing" jdbcType="VARCHAR" />
+		<result column="updownlink" property="updownlink"
+			jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="Version" property="version" jdbcType="VARCHAR" />
+		<result column="remark1" property="remark1" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="remark3" property="remark3" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, sid, name, createtime, updatetime, specification, val,
+		img,
+		introduce, price,
+		malllink, store, isstore, place, level, sealing,
+		updownlink, brand, Version,
+		remark1,
+		remark2, remark3
+	</sql>
+	<resultMap id="ComVoMap" type="com.luban.po.TComponent">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="sid" property="sid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="specification" property="specification"
+			jdbcType="VARCHAR" />
+		<result column="val" property="val" jdbcType="VARCHAR" />
+		<result column="img" property="img" jdbcType="VARCHAR" />
+		<result column="introduce" property="introduce"
+			jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="REAL" />
+		<result column="malllink" property="malllink"
+			jdbcType="VARCHAR" />
+		<result column="store" property="store" jdbcType="INTEGER" />
+		<result column="isstore" property="isstore" jdbcType="VARCHAR" />
+		<result column="place" property="place" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="sealing" property="sealing" jdbcType="VARCHAR" />
+		<result column="updownlink" property="updownlink"
+			jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="Version" property="version" jdbcType="VARCHAR" />
+		<result column="remark1" property="remark1" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="remark3" property="remark3" jdbcType="VARCHAR" />
+
+		<association property="tSubclass"
+			javaType="com.luban.po.TSubclass">
+			<id column="sid" property="id" jdbcType="INTEGER" />
+			<result column="lid" property="lid" jdbcType="INTEGER" />
+			<result column="sname" property="name" jdbcType="VARCHAR" />
+			<association property="tLargeclass" javaType="com.luban.po.TLargeclass">
+				<id column="lid" property="id" jdbcType="INTEGER" />
+				<result column="lname" property="name" jdbcType="VARCHAR" />
+			</association> 
+		</association>
+		
+		 
+		
+	</resultMap>
+	<select id="selectInfo" resultMap="ComVoMap"
+		parameterType="com.luban.po.TComponent">
+		SELECT
+		c.id, sid, c.name, createtime, updatetime, specification, val, img,
+		introduce, price,
+		malllink, store, isstore, place, LEVEL, sealing,
+		updownlink, brand, VERSION,
+		remark1,
+		remark2, remark3, s.name
+		sname,s.lid,l.name lname
+		FROM t_component c,t_subclass s ,t_largeclass l 
+		
+		<where>
+		
+		 	c.sid=s.id 
+		 	AND s.lid=l.id
+		
+			<if test="id!=null">
+				and id=#{id}
+			</if>
+			<if test="sid!=null">
+				and sid=#{sid}
+			</if>
+			<if test="name!=null and name!=''">
+				and c.name like '%${name}%'
+			</if>
+		
+		</where>
+		
+	</select>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.luban.po.TComponentExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_component
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_component
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from t_component
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.luban.po.TComponentExample">
+		delete from t_component
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.luban.po.TComponent">
+		<selectKey keyProperty="id" order="BEFORE" resultType="int">
+			SELECT MAX(id)+1 FROM t_component
+		</selectKey>
+
+		insert into t_component (id, sid, name,
+		createtime, updatetime,
+		specification,
+		val, img, introduce,
+		price, malllink, store,
+		isstore,
+		place, level,
+		sealing, updownlink, brand,
+		Version, remark1, remark2,
+		remark3)
+		values (#{id}, #{sid,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		now(), now(),
+		#{specification,jdbcType=VARCHAR},
+		#{val,jdbcType=VARCHAR},
+		#{img,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR},
+		#{price,jdbcType=REAL}, #{malllink,jdbcType=VARCHAR},
+		#{store,jdbcType=INTEGER},
+		#{isstore,jdbcType=VARCHAR},
+		#{place,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+		#{sealing,jdbcType=VARCHAR}, #{updownlink,jdbcType=VARCHAR},
+		#{brand,jdbcType=VARCHAR},
+		#{version,jdbcType=VARCHAR},
+		#{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR},
+		#{remark3,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.luban.po.TComponent">
+		insert into t_component
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="sid != null">
+				sid,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="updatetime != null">
+				updatetime,
+			</if>
+			<if test="specification != null">
+				specification,
+			</if>
+			<if test="val != null">
+				val,
+			</if>
+			<if test="img != null">
+				img,
+			</if>
+			<if test="introduce != null">
+				introduce,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="malllink != null">
+				malllink,
+			</if>
+			<if test="store != null">
+				store,
+			</if>
+			<if test="isstore != null">
+				isstore,
+			</if>
+			<if test="place != null">
+				place,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="sealing != null">
+				sealing,
+			</if>
+			<if test="updownlink != null">
+				updownlink,
+			</if>
+			<if test="brand != null">
+				brand,
+			</if>
+			<if test="version != null">
+				Version,
+			</if>
+			<if test="remark1 != null">
+				remark1,
+			</if>
+			<if test="remark2 != null">
+				remark2,
+			</if>
+			<if test="remark3 != null">
+				remark3,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="sid != null">
+				#{sid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				now(),
+			</if>
+			<if test="updatetime != null">
+				now(),
+			</if>
+			<if test="specification != null">
+				#{specification,jdbcType=VARCHAR},
+			</if>
+			<if test="val != null">
+				#{val,jdbcType=VARCHAR},
+			</if>
+			<if test="img != null">
+				#{img,jdbcType=VARCHAR},
+			</if>
+			<if test="introduce != null">
+				#{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=REAL},
+			</if>
+			<if test="malllink != null">
+				#{malllink,jdbcType=VARCHAR},
+			</if>
+			<if test="store != null">
+				#{store,jdbcType=INTEGER},
+			</if>
+			<if test="isstore != null">
+				#{isstore,jdbcType=VARCHAR},
+			</if>
+			<if test="place != null">
+				#{place,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="sealing != null">
+				#{sealing,jdbcType=VARCHAR},
+			</if>
+			<if test="updownlink != null">
+				#{updownlink,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				#{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				#{version,jdbcType=VARCHAR},
+			</if>
+			<if test="remark1 != null">
+				#{remark1,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				#{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="remark3 != null">
+				#{remark3,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.luban.po.TComponentExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_component
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_component
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.sid != null">
+				sid = #{record.sid,jdbcType=INTEGER},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createtime != null">
+				createtime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.updatetime != null">
+				updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.specification != null">
+				specification = #{record.specification,jdbcType=VARCHAR},
+			</if>
+			<if test="record.val != null">
+				val = #{record.val,jdbcType=VARCHAR},
+			</if>
+			<if test="record.img != null">
+				img = #{record.img,jdbcType=VARCHAR},
+			</if>
+			<if test="record.introduce != null">
+				introduce = #{record.introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="record.price != null">
+				price = #{record.price,jdbcType=REAL},
+			</if>
+			<if test="record.malllink != null">
+				malllink = #{record.malllink,jdbcType=VARCHAR},
+			</if>
+			<if test="record.store != null">
+				store = #{record.store,jdbcType=INTEGER},
+			</if>
+			<if test="record.isstore != null">
+				isstore = #{record.isstore,jdbcType=VARCHAR},
+			</if>
+			<if test="record.place != null">
+				place = #{record.place,jdbcType=VARCHAR},
+			</if>
+			<if test="record.level != null">
+				level = #{record.level,jdbcType=INTEGER},
+			</if>
+			<if test="record.sealing != null">
+				sealing = #{record.sealing,jdbcType=VARCHAR},
+			</if>
+			<if test="record.updownlink != null">
+				updownlink = #{record.updownlink,jdbcType=VARCHAR},
+			</if>
+			<if test="record.brand != null">
+				brand = #{record.brand,jdbcType=VARCHAR},
+			</if>
+			<if test="record.version != null">
+				Version = #{record.version,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark1 != null">
+				remark1 = #{record.remark1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark2 != null">
+				remark2 = #{record.remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark3 != null">
+				remark3 = #{record.remark3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_component
+		set id = #{record.id,jdbcType=INTEGER},
+		sid =
+		#{record.sid,jdbcType=INTEGER},
+		name = #{record.name,jdbcType=VARCHAR},
+		createtime = #{record.createtime,jdbcType=TIMESTAMP},
+		updatetime =
+		#{record.updatetime,jdbcType=TIMESTAMP},
+		specification =
+		#{record.specification,jdbcType=VARCHAR},
+		val =
+		#{record.val,jdbcType=VARCHAR},
+		img = #{record.img,jdbcType=VARCHAR},
+		introduce = #{record.introduce,jdbcType=VARCHAR},
+		price =
+		#{record.price,jdbcType=REAL},
+		malllink =
+		#{record.malllink,jdbcType=VARCHAR},
+		store =
+		#{record.store,jdbcType=INTEGER},
+		isstore =
+		#{record.isstore,jdbcType=VARCHAR},
+		place =
+		#{record.place,jdbcType=VARCHAR},
+		level =
+		#{record.level,jdbcType=INTEGER},
+		sealing =
+		#{record.sealing,jdbcType=VARCHAR},
+		updownlink =
+		#{record.updownlink,jdbcType=VARCHAR},
+		brand =
+		#{record.brand,jdbcType=VARCHAR},
+		Version =
+		#{record.version,jdbcType=VARCHAR},
+		remark1 =
+		#{record.remark1,jdbcType=VARCHAR},
+		remark2 =
+		#{record.remark2,jdbcType=VARCHAR},
+		remark3 =
+		#{record.remark3,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.luban.po.TComponent">
+		update t_component
+		<set>
+			<if test="sid != null">
+				sid = #{sid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = now(),
+			</if>
+			<if test="updatetime != null">
+				updatetime = now(),
+			</if>
+			<if test="specification != null">
+				specification = #{specification,jdbcType=VARCHAR},
+			</if>
+			<if test="val != null">
+				val = #{val,jdbcType=VARCHAR},
+			</if>
+			<if test="img != null">
+				img = #{img,jdbcType=VARCHAR},
+			</if>
+			<if test="introduce != null">
+				introduce = #{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=REAL},
+			</if>
+			<if test="malllink != null">
+				malllink = #{malllink,jdbcType=VARCHAR},
+			</if>
+			<if test="store != null">
+				store = #{store,jdbcType=INTEGER},
+			</if>
+			<if test="isstore != null">
+				isstore = #{isstore,jdbcType=VARCHAR},
+			</if>
+			<if test="place != null">
+				place = #{place,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=INTEGER},
+			</if>
+			<if test="sealing != null">
+				sealing = #{sealing,jdbcType=VARCHAR},
+			</if>
+			<if test="updownlink != null">
+				updownlink = #{updownlink,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				brand = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null">
+				Version = #{version,jdbcType=VARCHAR},
+			</if>
+			<if test="remark1 != null">
+				remark1 = #{remark1,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				remark2 = #{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="remark3 != null">
+				remark3 = #{remark3,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.luban.po.TComponent">
+		update t_component
+		set sid = #{sid,jdbcType=INTEGER},
+		name = #{name,jdbcType=VARCHAR},
+		createtime = now(),
+		updatetime = now(),
+		specification = #{specification,jdbcType=VARCHAR},
+		val =
+		#{val,jdbcType=VARCHAR},
+		img = #{img,jdbcType=VARCHAR},
+		introduce =
+		#{introduce,jdbcType=VARCHAR},
+		price = #{price,jdbcType=REAL},
+		malllink
+		= #{malllink,jdbcType=VARCHAR},
+		store = #{store,jdbcType=INTEGER},
+		isstore = #{isstore,jdbcType=VARCHAR},
+		place =
+		#{place,jdbcType=VARCHAR},
+		level = #{level,jdbcType=INTEGER},
+		sealing =
+		#{sealing,jdbcType=VARCHAR},
+		updownlink =
+		#{updownlink,jdbcType=VARCHAR},
+		brand = #{brand,jdbcType=VARCHAR},
+		Version = #{version,jdbcType=VARCHAR},
+		remark1 =
+		#{remark1,jdbcType=VARCHAR},
+		remark2 = #{remark2,jdbcType=VARCHAR},
+		remark3 = #{remark3,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<resultMap type="com.luban.po.TComponent" id="cVoMap">
+		<id column="cid" property="id" jdbcType="INTEGER" />
+		<result column="sid" property="sid" jdbcType="INTEGER" />
+		<result column="cname" property="name" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="specification" property="specification"
+			jdbcType="VARCHAR" />
+		<result column="val" property="val" jdbcType="VARCHAR" />
+		<result column="img" property="img" jdbcType="VARCHAR" />
+		<result column="introduce" property="introduce"
+			jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="REAL" />
+		<result column="malllink" property="malllink"
+			jdbcType="VARCHAR" />
+		<result column="store" property="store" jdbcType="INTEGER" />
+		<result column="isstore" property="isstore" jdbcType="VARCHAR" />
+		<result column="place" property="place" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="sealing" property="sealing" jdbcType="VARCHAR" />
+		<result column="updownlink" property="updownlink"
+			jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="Version" property="version" jdbcType="VARCHAR" />
+		<result column="remark1" property="remark1" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="remark3" property="remark3" jdbcType="VARCHAR" />
+		<association property="tSubclass" javaType="com.luban.po.TSubclass">
+			<id column="sid" property="id" jdbcType="INTEGER" />
+			<result column="slid" property="lid" jdbcType="INTEGER" />
+			<result column="sname" property="name" jdbcType="VARCHAR" />
+			<association property="tLargeclass" javaType="com.luban.po.TLargeclass">
+				<id column="slid" property="id" jdbcType="INTEGER" />
+			<result column="lname" property="name" jdbcType="VARCHAR" />
+			</association>
+		</association>
+	</resultMap>
+	
+	<select id="selectVoById" parameterType="int" resultMap="cVoMap">
+	SELECT
+c.id cid, sid, c.name cname, createtime, updatetime, specification, val,
+		img,
+		introduce, price,
+		malllink, store, isstore, place, LEVEL, sealing,
+		updownlink, brand, VERSION,
+		remark1,
+		remark2, remark3,
+
+		 s.`lid` slid,s.`name` sname,
+		l.`name` lname
+	FROM t_component c,t_subclass s,t_largeclass l
+	
+	WHERE  c.`sid`=s.`id` AND s.`lid`=l.`id` AND c.id=#{value}
+	
+	</select>
+	
+	
+	
+	
+	
+</mapper>

@@ -1,0 +1,14 @@
+span {
+	color: red;
+	text-indent: 2em;
+	/*background-color: rgba(255,255,255,0.9);*/
+}
+body {
+	background: url(../img/bg.jpg) 0px 0px no-repeat;
+}
+h1{
+	color: #000000;
+}
+.result{
+	font-size: 50px;
+}

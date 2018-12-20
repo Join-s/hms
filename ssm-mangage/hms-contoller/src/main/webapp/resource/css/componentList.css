@@ -1,0 +1,55 @@
+#btn{
+	width: 100%;
+	line-height: 50px;
+	color: #000000;
+	background-color: #2AABD2;
+	font: 25px;
+	border-radius: 10px;
+}
+#myUL{
+	width: 100%;
+}
+#pageSpan{
+	font-size: 20px;
+	line-height: 30px;
+}
+.elenamediv a{
+	font-size: 24px;
+}
+#sortul li{
+	list-style: none;
+	float: left;
+	/*border : 1px solid #2AABD2;*/
+	width: 120px;
+	line-height: 30px;
+	font-size:25px;
+	text-align: center;
+}
+.clear{
+	clear: both;
+}
+
+#mcssSpan{
+	line-height: 30px;
+	text-align: right;
+	font-size: 20px;
+}
+#mcssSpan span{
+} 
+body{
+	background: url(../img/loginbg2.jpg) 0px 0px repeat;
+}
+.glyphicon-plus{
+	/*background-color: red;*/
+	/*color: goldenrod;*/
+}
+.sort-ul{
+	margin-top: -15px;
+	margin-bottom: 20px;
+}
+.img-info-big{
+	width: 300px;
+	height: 300px;
+	position: fixed;
+	display: none;
+}

@@ -1,0 +1,5 @@
+function check(){
+	
+	
+	return true;
+}

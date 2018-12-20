@@ -1,0 +1,15 @@
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:48 +0800] "GET /rest/goM HTTP/1.1" 200 645 http-bio-8888-exec-1 3324
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:49 +0800] "GET /rest/go HTTP/1.1" 200 4506 http-bio-8888-exec-3 4232
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:49 +0800] "GET /rest/go HTTP/1.1" 200 4506 http-bio-8888-exec-2 4232
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:49 +0800] "GET /resource/css/index.css HTTP/1.1" 200 186 http-bio-8888-exec-7 4
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:49 +0800] "GET /resource/css/foot.css HTTP/1.1" 200 245 http-bio-8888-exec-6 5
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:50 +0800] "GET /resource/bootstrap-3.3.7-dist/css/bootstrap.css HTTP/1.1" 200 146010 http-bio-8888-exec-9 4
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:50 +0800] "GET /resource/js/jquery-2.1.1.min.js HTTP/1.1" 200 84284 http-bio-8888-exec-8 3
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:50 +0800] "GET /resource/bootstrap-3.3.7-dist/js/bootstrap.js HTTP/1.1" 200 69707 http-bio-8888-exec-8 3
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:50 +0800] "GET /resource/js/autoifrheight.js HTTP/1.1" 200 350 http-bio-8888-exec-10 2
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:06:50 +0800] "GET /resource/img/loginbg2.jpg HTTP/1.1" 200 32484 http-bio-8888-exec-8 43
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:10:22 +0800] "GET /rest/user/shoppingcat HTTP/1.1" 200 7259 http-bio-8888-exec-8 198238
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:10:22 +0800] "GET /resource/js/shoppingcart.js HTTP/1.1" 200 1789 http-bio-8888-exec-8 4
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:10:22 +0800] "GET /resource/css/shoppingcart.css HTTP/1.1" 200 541 http-bio-8888-exec-6 5
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:10:22 +0800] "GET /rest/user/img/register-success.jpg HTTP/1.1" 404 1019 http-bio-8888-exec-7 15
+0:0:0:0:0:0:0:1 - - [16/Nov/2018:18:10:22 +0800] "GET /favicon.ico HTTP/1.1" 404 973 http-bio-8888-exec-7 1

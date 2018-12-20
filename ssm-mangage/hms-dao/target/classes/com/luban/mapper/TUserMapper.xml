@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.luban.mapper.TUserMapper">
+
+
+
+
+	<resultMap id="BaseResultMap" type="com.luban.po.TUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="graid" property="graid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="introduce" property="introduce"
+			jdbcType="VARCHAR" />
+		<result column="jnumber" property="jnumber" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="honourval" property="honourval"
+			jdbcType="INTEGER" />
+		<result column="isgraduate" property="isgraduate"
+			jdbcType="VARCHAR" />
+		<result column="intime" property="intime" jdbcType="INTEGER" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="seat" property="seat" jdbcType="VARCHAR" />
+		<result column="yjnum" property="yjnum" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="remark1" property="remark1" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="remark3" property="remark3" jdbcType="VARCHAR" />
+		<result column="remark4" property="remark4" jdbcType="VARCHAR" />
+		<result column="remark5" property="remark5" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<select id="login" resultMap="BaseResultMap"
+		parameterType="tUser">
+		SELECT * FROM t_user WHERE jnumber =#{jnumber} AND pwd
+		=#{pwd} AND
+		remark1=#{remark1}
+	</select>
+
+
+
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		id, graid, name, photo, introduce, jnumber, sex, tel, qq,
+		level,
+		honourval, isgraduate,
+		intime, pwd, seat, yjnum, createtime,
+		updatetime, remark1, remark2, remark3,
+		remark4,
+		remark5
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="com.luban.po.TUserExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from t_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from t_user
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample"
+		parameterType="com.luban.po.TUserExample">
+		delete from t_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.luban.po.TUser">
+		<selectKey resultType="int" keyProperty="id" order="BEFORE">
+			SELECT max(id)+1 from t_user
+		</selectKey>
+		insert into t_user (id, graid, name,
+		photo, introduce, jnumber,
+		sex,
+		tel, qq, level,
+		honourval, isgraduate, intime,
+		pwd, seat, yjnum,
+		createtime,
+		updatetime, remark1, remark2,
+		remark3, remark4, remark5
+		)
+		values (#{id}, #{graid,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{photo,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR},
+		#{jnumber,jdbcType=VARCHAR},
+		#{sex,jdbcType=VARCHAR},
+		#{tel,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR}, 100,
+		#{honourval,jdbcType=INTEGER}, #{isgraduate,jdbcType=VARCHAR},
+		#{intime,jdbcType=INTEGER},
+		#{pwd,jdbcType=VARCHAR},
+		#{seat,jdbcType=VARCHAR}, #{yjnum,jdbcType=VARCHAR}, now(),
+		now(), 0,
+		#{remark2,jdbcType=VARCHAR},
+		#{remark3,jdbcType=VARCHAR},
+		#{remark4,jdbcType=VARCHAR}, #{remark5,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.luban.po.TUser">
+		insert into t_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="graid != null">
+				graid,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="photo != null">
+				photo,
+			</if>
+			<if test="introduce != null">
+				introduce,
+			</if>
+			<if test="jnumber != null">
+				jnumber,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="honourval != null">
+				honourval,
+			</if>
+			<if test="isgraduate != null">
+				isgraduate,
+			</if>
+			<if test="intime != null">
+				intime,
+			</if>
+			<if test="pwd != null">
+				pwd,
+			</if>
+			<if test="seat != null">
+				seat,
+			</if>
+			<if test="yjnum != null">
+				yjnum,
+			</if>
+			<if test="createtime != null">
+				createtime,
+			</if>
+			<if test="updatetime != null">
+				updatetime,
+			</if>
+			<if test="remark1 != null">
+				remark1,
+			</if>
+			<if test="remark2 != null">
+				remark2,
+			</if>
+			<if test="remark3 != null">
+				remark3,
+			</if>
+			<if test="remark4 != null">
+				remark4,
+			</if>
+			<if test="remark5 != null">
+				remark5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="graid != null">
+				#{graid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				#{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="introduce != null">
+				#{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="jnumber != null">
+				#{jnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="honourval != null">
+				#{honourval,jdbcType=INTEGER},
+			</if>
+			<if test="isgraduate != null">
+				#{isgraduate,jdbcType=VARCHAR},
+			</if>
+			<if test="intime != null">
+				#{intime,jdbcType=INTEGER},
+			</if>
+			<if test="pwd != null">
+				#{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="seat != null">
+				#{seat,jdbcType=VARCHAR},
+			</if>
+			<if test="yjnum != null">
+				#{yjnum,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				#{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark1 != null">
+				#{remark1,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				#{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="remark3 != null">
+				#{remark3,jdbcType=VARCHAR},
+			</if>
+			<if test="remark4 != null">
+				#{remark4,jdbcType=VARCHAR},
+			</if>
+			<if test="remark5 != null">
+				#{remark5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample"
+		parameterType="com.luban.po.TUserExample"
+		resultType="java.lang.Integer">
+		select count(*) from t_user
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update t_user
+		<set>
+			<if test="record.id != null">
+				id = #{record.id,jdbcType=INTEGER},
+			</if>
+			<if test="record.graid != null">
+				graid = #{record.graid,jdbcType=INTEGER},
+			</if>
+			<if test="record.name != null">
+				name = #{record.name,jdbcType=VARCHAR},
+			</if>
+			<if test="record.photo != null">
+				photo = #{record.photo,jdbcType=VARCHAR},
+			</if>
+			<if test="record.introduce != null">
+				introduce = #{record.introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="record.jnumber != null">
+				jnumber = #{record.jnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="record.sex != null">
+				sex = #{record.sex,jdbcType=VARCHAR},
+			</if>
+			<if test="record.tel != null">
+				tel = #{record.tel,jdbcType=VARCHAR},
+			</if>
+			<if test="record.qq != null">
+				qq = #{record.qq,jdbcType=VARCHAR},
+			</if>
+			<if test="record.level != null">
+				level = #{record.level,jdbcType=INTEGER},
+			</if>
+			<if test="record.honourval != null">
+				honourval = #{record.honourval,jdbcType=INTEGER},
+			</if>
+			<if test="record.isgraduate != null">
+				isgraduate = #{record.isgraduate,jdbcType=VARCHAR},
+			</if>
+			<if test="record.intime != null">
+				intime = #{record.intime,jdbcType=INTEGER},
+			</if>
+			<if test="record.pwd != null">
+				pwd = #{record.pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="record.seat != null">
+				seat = #{record.seat,jdbcType=VARCHAR},
+			</if>
+			<if test="record.yjnum != null">
+				yjnum = #{record.yjnum,jdbcType=VARCHAR},
+			</if>
+			<if test="record.createtime != null">
+				createtime = #{record.createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.updatetime != null">
+				updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="record.remark1 != null">
+				remark1 = #{record.remark1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark2 != null">
+				remark2 = #{record.remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark3 != null">
+				remark3 = #{record.remark3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark4 != null">
+				remark4 = #{record.remark4,jdbcType=VARCHAR},
+			</if>
+			<if test="record.remark5 != null">
+				remark5 = #{record.remark5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update t_user
+		set id = #{record.id,jdbcType=INTEGER},
+		graid =
+		#{record.graid,jdbcType=INTEGER},
+		name =
+		#{record.name,jdbcType=VARCHAR},
+		photo =
+		#{record.photo,jdbcType=VARCHAR},
+		introduce =
+		#{record.introduce,jdbcType=VARCHAR},
+		jnumber =
+		#{record.jnumber,jdbcType=VARCHAR},
+		sex =
+		#{record.sex,jdbcType=VARCHAR},
+		tel = #{record.tel,jdbcType=VARCHAR},
+		qq = #{record.qq,jdbcType=VARCHAR},
+		level =
+		#{record.level,jdbcType=INTEGER},
+		honourval =
+		#{record.honourval,jdbcType=INTEGER},
+		isgraduate =
+		#{record.isgraduate,jdbcType=VARCHAR},
+		intime =
+		#{record.intime,jdbcType=INTEGER},
+		pwd =
+		#{record.pwd,jdbcType=VARCHAR},
+		seat = #{record.seat,jdbcType=VARCHAR},
+		yjnum = #{record.yjnum,jdbcType=VARCHAR},
+		createtime =
+		#{record.createtime,jdbcType=TIMESTAMP},
+		updatetime =
+		#{record.updatetime,jdbcType=TIMESTAMP},
+		remark1 =
+		#{record.remark1,jdbcType=VARCHAR},
+		remark2 =
+		#{record.remark2,jdbcType=VARCHAR},
+		remark3 =
+		#{record.remark3,jdbcType=VARCHAR},
+		remark4 =
+		#{record.remark4,jdbcType=VARCHAR},
+		remark5 =
+		#{record.remark5,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.luban.po.TUser">
+		update t_user
+		<set>
+			<if test="graid != null">
+				graid = #{graid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="photo != null">
+				photo = #{photo,jdbcType=VARCHAR},
+			</if>
+			<if test="introduce != null">
+				introduce = #{introduce,jdbcType=VARCHAR},
+			</if>
+			<if test="jnumber != null">
+				jnumber = #{jnumber,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=INTEGER},
+			</if>
+			<if test="honourval != null">
+				honourval = #{honourval,jdbcType=INTEGER},
+			</if>
+			<if test="isgraduate != null">
+				isgraduate = #{isgraduate,jdbcType=VARCHAR},
+			</if>
+			<if test="intime != null">
+				intime = #{intime,jdbcType=INTEGER},
+			</if>
+			<if test="pwd != null">
+				pwd = #{pwd,jdbcType=VARCHAR},
+			</if>
+			<if test="seat != null">
+				seat = #{seat,jdbcType=VARCHAR},
+			</if>
+			<if test="yjnum != null">
+				yjnum = #{yjnum,jdbcType=VARCHAR},
+			</if>
+			<if test="createtime != null">
+				createtime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updatetime != null">
+				updatetime = #{updatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="remark1 != null">
+				remark1 = #{remark1,jdbcType=VARCHAR},
+			</if>
+			<if test="remark2 != null">
+				remark2 = #{remark2,jdbcType=VARCHAR},
+			</if>
+			<if test="remark3 != null">
+				remark3 = #{remark3,jdbcType=VARCHAR},
+			</if>
+			<if test="remark4 != null">
+				remark4 = #{remark4,jdbcType=VARCHAR},
+			</if>
+			<if test="remark5 != null">
+				remark5 = #{remark5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.luban.po.TUser">
+		update t_user
+		set graid = #{graid,jdbcType=INTEGER},
+		name
+		= #{name,jdbcType=VARCHAR},
+		photo = #{photo,jdbcType=VARCHAR},
+		introduce = #{introduce,jdbcType=VARCHAR},
+		jnumber =
+		#{jnumber,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=VARCHAR},
+		tel =
+		#{tel,jdbcType=VARCHAR},
+		qq = #{qq,jdbcType=VARCHAR},
+		level =
+		#{level,jdbcType=INTEGER},
+		honourval = #{honourval,jdbcType=INTEGER},
+		isgraduate = #{isgraduate,jdbcType=VARCHAR},
+		intime =
+		#{intime,jdbcType=INTEGER},
+		pwd = #{pwd,jdbcType=VARCHAR},
+		seat =
+		#{seat,jdbcType=VARCHAR},
+		yjnum = #{yjnum,jdbcType=VARCHAR},
+		createtime
+		= #{createtime,jdbcType=TIMESTAMP},
+		updatetime =
+		#{updatetime,jdbcType=TIMESTAMP},
+		remark1 =
+		#{remark1,jdbcType=VARCHAR},
+		remark2 = #{remark2,jdbcType=VARCHAR},
+		remark3 = #{remark3,jdbcType=VARCHAR},
+		remark4 =
+		#{remark4,jdbcType=VARCHAR},
+		remark5 = #{remark5,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<resultMap type="com.luban.po.TUser" id="UserVoMap">
+
+		<id column="u_id" property="id" jdbcType="INTEGER" />
+		<result column="graid" property="graid" jdbcType="INTEGER" />
+		<result column="u_name" property="name" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="u_introduce" property="introduce"
+			jdbcType="VARCHAR" />
+		<result column="jnumber" property="jnumber" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="u_level" property="level" jdbcType="INTEGER" />
+		<result column="honourval" property="honourval"
+			jdbcType="INTEGER" />
+		<result column="isgraduate" property="isgraduate"
+			jdbcType="VARCHAR" />
+		<result column="intime" property="intime" jdbcType="INTEGER" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="seat" property="seat" jdbcType="VARCHAR" />
+		<result column="yjnum" property="yjnum" jdbcType="VARCHAR" />
+		<result column="u_createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="u_updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="u_remark1" property="remark1"
+			jdbcType="VARCHAR" />
+		<result column="u_remark2" property="remark2"
+			jdbcType="VARCHAR" />
+		<result column="u_remark3" property="remark3"
+			jdbcType="VARCHAR" />
+		<result column="u_remark4" property="remark4"
+			jdbcType="VARCHAR" />
+		<result column="u_remark5" property="remark5"
+			jdbcType="VARCHAR" />
+
+
+		<collection property="tOrders"
+			ofType="com.luban.po.TOrders">
+			<id column="o_id" property="id" jdbcType="INTEGER" />
+			<result column="o_uid" property="uid" jdbcType="INTEGER" />
+			<result column="o_createtime" property="createtime"
+				jdbcType="TIMESTAMP" />
+			<result column="o_updatetime" property="updatetime"
+				jdbcType="TIMESTAMP" />
+			<result column="status" property="status" jdbcType="VARCHAR" />
+			<result column="remark" property="remark" jdbcType="VARCHAR" />
+
+			<collection property="tOrderdetails"
+				ofType="com.luban.po.TOrderdetails">
+				<id column="od_id" property="id" jdbcType="INTEGER" />
+				<result column="cid" property="cid" jdbcType="INTEGER" />
+				<result column="oid" property="oid" jdbcType="INTEGER" />
+				<result column="number" property="number" jdbcType="INTEGER" />
+				<association property="tComponent"
+					javaType="com.luban.po.TComponent">
+					<id column="c_id" property="id" jdbcType="INTEGER" />
+					<result column="sid" property="sid" jdbcType="INTEGER" />
+					<result column="c_name" property="name" jdbcType="VARCHAR" />
+					<result column="c_createtime" property="createtime"
+						jdbcType="TIMESTAMP" />
+					<result column="c_updatetime" property="updatetime"
+						jdbcType="TIMESTAMP" />
+					<result column="specification" property="specification"
+						jdbcType="VARCHAR" />
+					<result column="val" property="val" jdbcType="VARCHAR" />
+					<result column="img" property="img" jdbcType="VARCHAR" />
+					<result column="c_introduce" property="introduce"
+						jdbcType="VARCHAR" />
+					<result column="price" property="price" jdbcType="REAL" />
+					<result column="malllink" property="malllink"
+						jdbcType="VARCHAR" />
+					<result column="store" property="store" jdbcType="INTEGER" />
+					<result column="isstore" property="isstore"
+						jdbcType="VARCHAR" />
+					<result column="place" property="place" jdbcType="VARCHAR" />
+					<result column="c_level" property="level" jdbcType="INTEGER" />
+					<result column="sealing" property="sealing"
+						jdbcType="VARCHAR" />
+					<result column="updownlink" property="updownlink"
+						jdbcType="VARCHAR" />
+					<result column="brand" property="brand" jdbcType="VARCHAR" />
+					<result column="Version" property="version"
+						jdbcType="VARCHAR" />
+					<result column="c_remark1" property="remark1"
+						jdbcType="VARCHAR" />
+					<result column="c_remark2" property="remark2"
+						jdbcType="VARCHAR" />
+					<result column="c_remark3" property="remark3"
+						jdbcType="VARCHAR" />
+				</association>
+			</collection>
+		</collection>
+	</resultMap>
+
+	<select id="selectVo" parameterType="int" resultMap="UserVoMap">
+		SELECT u.id u_id, graid , u.name u_name, photo, u.introduce
+		u_introduce, jnumber, sex,
+		tel, qq, u.level u_level, honourval,
+		isgraduate,
+		intime, pwd, seat, yjnum, u.createtime u_createtime,
+		u.updatetime u_updatetime, u.remark1 u_remark1, u.remark2 u_remark2,
+		u.remark3 u_remark3, u.remark4 u_remark4,u.remark5 u_remark5,
+
+		o.id o_id, o.uid o_uid, o.createtime o_createtime, o.updatetime
+		o_updatetime, STATUS, remark,
+
+		od.id od_id, cid, oid, number,
+
+		c.id c_id,
+		sid, c.name c_name, c.createtime c_createtime, c.updatetime
+		c_updatetime, specification, val,
+		img,c.introduce c_introduce, price,
+		malllink, store, isstore, place, c.level c_level, sealing,
+		updownlink,
+		brand, VERSION,
+		c.remark1 c_remark1,
+		c.remark2 c_remark2, c.remark3
+		c_remark3
+
+		FROM t_orders o,t_orderdetails od,t_component c,t_user u
+
+		<where>
+			o.id=od.oid AND od.`cid`=c.`id` AND o.uid=u.id
+			and u.id=#{value}
+		</where>
+	</select>
+	<resultMap id="stuInfoMap" type="com.luban.po.TUser">
+		<id column="tid" property="id" jdbcType="INTEGER" />
+		<result column="graid" property="graid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="introduce" property="introduce"
+			jdbcType="VARCHAR" />
+		<result column="jnumber" property="jnumber" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="honourval" property="honourval"
+			jdbcType="INTEGER" />
+		<result column="isgraduate" property="isgraduate"
+			jdbcType="VARCHAR" />
+		<result column="intime" property="intime" jdbcType="INTEGER" />
+		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+		<result column="seat" property="seat" jdbcType="VARCHAR" />
+		<result column="yjnum" property="yjnum" jdbcType="VARCHAR" />
+		<result column="createtime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="updatetime" property="updatetime"
+			jdbcType="TIMESTAMP" />
+		<result column="remark1" property="remark1" jdbcType="VARCHAR" />
+		<result column="remark2" property="remark2" jdbcType="VARCHAR" />
+		<result column="remark3" property="remark3" jdbcType="VARCHAR" />
+		<result column="remark4" property="remark4" jdbcType="VARCHAR" />
+		<result column="remark5" property="remark5" jdbcType="VARCHAR" />
+		<association property="tGrade" javaType="com.luban.po.TGrade">
+			<id column="graid" property="id" jdbcType="INTEGER" />
+			<result column="magid" property="magid" jdbcType="INTEGER" />
+			<result column="gname" property="name" jdbcType="VARCHAR" />
+			<result column="year" property="year" jdbcType="INTEGER" />
+			<result column="Tutor" property="tutor" jdbcType="VARCHAR" />
+			<result column="Tutortel" property="tutortel"
+				jdbcType="VARCHAR" />
+			<association property="tMajor" javaType="com.luban.po.TMajor">
+				<id column="magid" property="id" jdbcType="INTEGER" />
+				<result column="depid" property="depid" jdbcType="INTEGER" />
+				<result column="mname" property="name" jdbcType="VARCHAR" />
+				<association property="tDepartment" javaType="com.luban.po.TDepartment">
+					<id column="depid" property="id" jdbcType="INTEGER" />
+					<result column="dname" property="name" jdbcType="VARCHAR" />
+				</association>
+			</association>
+		</association>
+	</resultMap>
+	<select id="selectByExampleVo" resultMap="stuInfoMap"
+		parameterType="com.luban.po.TUserExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		t_user.id tid, graid, t_user.name, photo, introduce, jnumber, sex,
+		tel, qq, LEVEL,
+		honourval, isgraduate,
+		intime, pwd, seat, yjnum,
+		createtime, updatetime, remark1, remark2, remark3,
+		remark4,
+		remark5,
+		t_grade.`name` gname,`Tutor` ,`Tutortel`,`year`,magid,
+		`depid`,t_major.`name` mname,
+		t_department.`name` dname
+		FROM
+		t_user,t_grade,t_department,t_major
+
+		<if test="_parameter != null">
+			<where>
+
+				t_user.`graid`=t_grade.`id` AND t_grade.`magid`=t_major.id AND
+				t_department.`id`=t_major.`depid` and
+
+
+				<foreach collection="oredCriteria" item="criteria"
+					separator="or">
+					<if test="criteria.valid">
+						<trim prefix="(" suffix=")" prefixOverrides="and">
+							<foreach collection="criteria.criteria" item="criterion">
+								<choose>
+									<when test="criterion.noValue">
+										and ${criterion.condition}
+									</when>
+									<when test="criterion.singleValue">
+										and ${criterion.condition} #{criterion.value}
+									</when>
+									<when test="criterion.betweenValue">
+										and ${criterion.condition} #{criterion.value} and
+										#{criterion.secondValue}
+									</when>
+									<when test="criterion.listValue">
+										and ${criterion.condition}
+										<foreach collection="criterion.value" item="listItem"
+											open="(" close=")" separator=",">
+											#{listItem}
+										</foreach>
+									</when>
+								</choose>
+							</foreach>
+						</trim>
+					</if>
+				</foreach>
+			</where>
+		</if>
+
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+
+
+</mapper>
